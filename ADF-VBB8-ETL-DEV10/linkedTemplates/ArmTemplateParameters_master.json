@@ -1,0 +1,120 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADF-VBB8-ETL-DEV10"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"LS_BULK_accountKey": {
+			"value": ""
+		},
+		"LS_BULK_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_Excel_accountKey": {
+			"value": ""
+		},
+		"LS_JSON_accountKey": {
+			"value": ""
+		},
+		"LS_JSON_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_REST_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SFTP_accountKey": {
+			"value": ""
+		},
+		"LS_SFTP_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SNOWFLAKE_password": {
+			"value": ""
+		},
+		"LS_SNOWFLAKE_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SQLSERVER_password": {
+			"value": ""
+		},
+		"LS_SQL_PARQ_accountKey": {
+			"value": ""
+		},
+		"LS_SqlServer1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_BULK_properties_typeProperties_url": {
+			"value": "https://adlsdevvisionboardraw10.dfs.core.windows.net/"
+		},
+		"LS_BULK_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_CSV_properties_typeProperties_url": {
+			"value": "https://adlsdevvisionboardraw10.dfs.core.windows.net/"
+		},
+		"LS_Excel_properties_typeProperties_url": {
+			"value": "https://adlsdevvisionboardraw10.dfs.core.windows.net/"
+		},
+		"LS_JSON_properties_typeProperties_url": {
+			"value": "https://adlsdevvisionboardraw10.dfs.core.windows.net/"
+		},
+		"LS_JSON_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_REST_properties_typeProperties_url": {
+			"value": " https://retoolapi.dev/yvtoSq/data"
+		},
+		"LS_REST_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_SFTP_properties_typeProperties_url": {
+			"value": "https://adlsdevvisionboardraw10.dfs.core.windows.net/"
+		},
+		"LS_SFTP_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_SNOWFLAKE_properties_typeProperties_database": {
+			"value": "DBAZURESNOW"
+		},
+		"LS_SNOWFLAKE_PARQUET_properties_typeProperties_url": {
+			"value": "https://blobvbdevsnow10.dfs.core.windows.net/"
+		},
+		"LS_SNOWFLAKE_PARQUET1_sasUri": {
+			"value": ""
+		},
+		"LS_SQLSERVER_properties_typeProperties_server": {
+			"value": "SAITEJA-PC"
+		},
+		"LS_SQLSERVER_properties_typeProperties_database": {
+			"value": "vbproject"
+		},
+		"LS_SQLSERVER_properties_typeProperties_userName": {
+			"value": "SAITEJA-PC\\HomeUserAdmin"
+		},
+		"LS_SQL_PARQ_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
