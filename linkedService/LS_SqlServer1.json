@@ -1,0 +1,16 @@
+{
+	"name": "LS_SqlServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=SAITEJA-PC;initial catalog=vbproject;user id=vbuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhOGVhYzliNy05MjliLTQ2ZDUtODY1OS01OTFhOTc3YWE3YWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
