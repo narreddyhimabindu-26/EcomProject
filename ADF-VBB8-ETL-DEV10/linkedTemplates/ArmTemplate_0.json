@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
+		"LS_AZSQL_CSV_META_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZSQL_CSV_META'"
+		},
 		"LS_AZSQL_DB_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQL_DB'"
@@ -75,13 +79,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SQLSERVER'"
 		},
-		"LS_SQL_PARQ_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SQL_PARQ'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_AZSQL_CSV_META_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-srvr-vb-dev1010.database.windows.net"
+		},
+		"LS_AZSQL_CSV_META_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-vb-dev1010"
+		},
+		"LS_AZSQL_CSV_META_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
 		},
 		"LS_AZSQL_DB_properties_typeProperties_server": {
 			"type": "string",
@@ -186,10 +198,6 @@
 		"LS_SQLSERVER_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "SAITEJA-PC\\HomeUserAdmin"
-		},
-		"LS_SQL_PARQ_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -208,6 +216,28 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_AZSQL_CSV_META')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('LS_AZSQL_CSV_META_properties_typeProperties_server')]",
+					"database": "[parameters('LS_AZSQL_CSV_META_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('LS_AZSQL_CSV_META_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LS_AZSQL_CSV_META_password')]"
 					}
 				}
 			},
@@ -539,23 +569,6 @@
 					"pooling": "False",
 					"multipleActiveResultSets": "False",
 					"commandTimeout": "0"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SQL_PARQ')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SQL_PARQ_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SQL_PARQ_accountKey')]"
-					}
 				}
 			},
 			"dependsOn": []
