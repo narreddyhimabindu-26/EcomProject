@@ -1,9 +1,9 @@
 {
-	"name": "PL3_CLOUDSG_CSV_EXCEL",
+	"name": "PL__SWITCH_CSVEXCEL",
 	"properties": {
 		"activities": [
 			{
-				"name": "LKUP_SRC_FILES",
+				"name": "LKUP_GET_FILETYPE_CSV_EXCEL",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -17,25 +17,22 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "SELECT DISTINCT L3_switch_type \nFROM dbo.vb_tbl_job a\nJOIN dbo.vb_tbl_trigger b ON a.trigger_id = b.trigger_id\nWHERE b.trigger_name = '@{pipeline().parameters.Trigger}'\n",
-							"type": "Expression"
-						},
+						"sqlReaderQuery": "SELECT DISTINCT L4_switch_type \nFROM dbo.vb_tbl_job a\nJOIN dbo.vb_tbl_trigger b ON a.trigger_id = b.trigger_id\nWHERE b.trigger_name = '@{pipeline().parameters.Trigger}'",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "DS_AZSQL_SRCDB",
+						"referenceName": "DS_AZSQL_CSV_EXCEL",
 						"type": "DatasetReference"
 					}
 				}
 			},
 			{
-				"name": "Switch_SRC_LOC_CSV_EXCEL",
+				"name": "Switch_CSV_EXCEL_FILES",
 				"type": "Switch",
 				"dependsOn": [
 					{
-						"activity": "LKUP_SRC_FILES",
+						"activity": "LKUP_GET_FILETYPE_CSV_EXCEL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -44,15 +41,15 @@
 				"userProperties": [],
 				"typeProperties": {
 					"on": {
-						"value": "@activity('LKUP_SRC_FILES').output.firstRow.L3_switch_type",
+						"value": "@activity('LKUP_GET_FILETYPE_CSV_EXCEL').output.firstRow.L4_switch_type\n",
 						"type": "Expression"
 					},
 					"cases": [
 						{
-							"value": "Azure",
+							"value": "csv",
 							"activities": [
 								{
-									"name": "Exec_file_CSV",
+									"name": "Execute Pipeline1",
 									"type": "ExecutePipeline",
 									"dependsOn": [],
 									"policy": {
@@ -61,33 +58,25 @@
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "PL__SWITCH_CSVEXCEL",
+											"referenceName": "PL_CSV_PARQUET",
 											"type": "PipelineReference"
 										},
-										"waitOnCompletion": true
+										"waitOnCompletion": true,
+										"parameters": {
+											"Trigger": {
+												"value": "@pipeline().parameters.Trigger",
+												"type": "Expression"
+											}
+										}
 									}
 								}
 							]
 						},
 						{
-							"value": "Aws",
+							"value": "excel",
 							"activities": [
 								{
 									"name": "Wait1",
-									"type": "Wait",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"waitTimeInSeconds": 1
-									}
-								}
-							]
-						},
-						{
-							"value": "GCP",
-							"activities": [
-								{
-									"name": "Wait2",
 									"type": "Wait",
 									"dependsOn": [],
 									"userProperties": [],
