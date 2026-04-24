@@ -42,7 +42,9 @@
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy",
+							"blockSizeInMB": 4
 						},
 						"formatSettings": {
 							"type": "ParquetWriteSettings"
@@ -242,11 +244,17 @@
 							"type": "String"
 						},
 						"jobid": {
-							"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+							"value": {
+								"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+								"type": "Expression"
+							},
 							"type": "Int32"
 						},
 						"pipeline_id": {
-							"value": "@pipeline().RunId",
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
 							"type": "String"
 						}
 					}

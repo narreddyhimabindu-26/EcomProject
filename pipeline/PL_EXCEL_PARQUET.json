@@ -125,11 +125,17 @@
 					"storedProcedureName": "[dbo].[vb_start_log_entry]",
 					"storedProcedureParameters": {
 						"jobid": {
-							"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+							"value": {
+								"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+								"type": "Expression"
+							},
 							"type": "Int32"
 						},
 						"pipeline_id": {
-							"value": "@pipeline().RunId",
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
 							"type": "String"
 						}
 					}
@@ -183,11 +189,17 @@
 							"type": "String"
 						},
 						"jobid": {
-							"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+							"value": {
+								"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+								"type": "Expression"
+							},
 							"type": "Int32"
 						},
 						"pipeline_id": {
-							"value": "@pipeline().RunId",
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
 							"type": "String"
 						}
 					}
@@ -220,15 +232,24 @@
 					"storedProcedureName": "[dbo].[vb_end_log_entry]",
 					"storedProcedureParameters": {
 						"error": {
-							"value": "@activity('COPY-CSV').error.message",
+							"value": {
+								"value": "@activity('CPY_EXCEL').error.message",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"jobid": {
-							"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+							"value": {
+								"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+								"type": "Expression"
+							},
 							"type": "Int32"
 						},
 						"pipeline_id": {
-							"value": "@pipeline().RunId",
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
 							"type": "String"
 						}
 					}
