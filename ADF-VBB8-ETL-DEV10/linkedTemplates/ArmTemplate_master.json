@@ -43,6 +43,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_JSON_PARQUET'"
 		},
+		"LS_LSAZSQL_CSV_EXCL_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_LSAZSQL_CSV_EXCL'"
+		},
 		"LS_PARQUET_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_PARQUET'"
@@ -130,6 +134,18 @@
 		"LS_JSON_PARQUET_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-srvr-vb-dev1010.database.windows.net"
+		},
+		"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-vb-dev1010"
+		},
+		"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
 		},
 		"LS_PARQUET_properties_typeProperties_url": {
 			"type": "string",
@@ -233,6 +249,9 @@
 					"LS_JSON_PARQUET_accountKey": {
 						"value": "[parameters('LS_JSON_PARQUET_accountKey')]"
 					},
+					"LS_LSAZSQL_CSV_EXCL_password": {
+						"value": "[parameters('LS_LSAZSQL_CSV_EXCL_password')]"
+					},
 					"LS_PARQUET_accountKey": {
 						"value": "[parameters('LS_PARQUET_accountKey')]"
 					},
@@ -295,6 +314,15 @@
 					},
 					"LS_JSON_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_JSON_PARQUET_properties_typeProperties_url')]"
+					},
+					"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_server": {
+						"value": "[parameters('LS_LSAZSQL_CSV_EXCL_properties_typeProperties_server')]"
+					},
+					"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_database": {
+						"value": "[parameters('LS_LSAZSQL_CSV_EXCL_properties_typeProperties_database')]"
+					},
+					"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_userName": {
+						"value": "[parameters('LS_LSAZSQL_CSV_EXCL_properties_typeProperties_userName')]"
 					},
 					"LS_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_PARQUET_properties_typeProperties_url')]"

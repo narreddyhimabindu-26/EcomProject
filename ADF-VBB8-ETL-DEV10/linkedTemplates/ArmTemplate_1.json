@@ -13,6 +13,16 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -35,6 +45,22 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "LS_AZSQL_SRCDB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_AZSQL_CSV_EXCEL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_LSAZSQL_CSV_EXCL",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -697,100 +723,6 @@
 					"compressionCodec": "snappy"
 				},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_SQL_PARQ')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SQL_PARQ",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "@concat(\n    'sql\\',\n    formatDateTime(utcNow(), 'yyyy'), '\\',\n    formatDateTime(utcNow(), 'MM'), '\\',\n    formatDateTime(utcNow(), 'dd')\n)",
-							"type": "Expression"
-						},
-						"fileSystem": "input"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "geolocation_zip_code_prefix",
-						"type": "UTF8"
-					},
-					{
-						"name": "geolocation_lat",
-						"type": "UTF8"
-					},
-					{
-						"name": "geolocation_lng",
-						"type": "UTF8"
-					},
-					{
-						"name": "geolocation_city",
-						"type": "UTF8"
-					},
-					{
-						"name": "geolocation_state",
-						"type": "UTF8"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_Excel_Parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "@concat(\n    'excel/',\n    formatDateTime(utcNow(), 'yyyy'), '/',\n    formatDateTime(utcNow(), 'MM'), '/',\n    formatDateTime(utcNow(), 'dd')\n)",
-							"type": "Expression"
-						},
-						"fileSystem": "input"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "order_id",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_sequential",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_type",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_installments",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_value",
-						"type": "UTF8"
-					}
-				]
 			},
 			"dependsOn": []
 		}

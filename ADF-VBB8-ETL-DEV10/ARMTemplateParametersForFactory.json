@@ -32,6 +32,9 @@
 		"LS_JSON_PARQUET_accountKey": {
 			"value": ""
 		},
+		"LS_LSAZSQL_CSV_EXCL_password": {
+			"value": ""
+		},
 		"LS_PARQUET_accountKey": {
 			"value": ""
 		},
@@ -97,6 +100,15 @@
 		},
 		"LS_JSON_PARQUET_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_server": {
+			"value": "sql-srvr-vb-dev1010.database.windows.net"
+		},
+		"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_database": {
+			"value": "sql-db-vb-dev1010"
+		},
+		"LS_LSAZSQL_CSV_EXCL_properties_typeProperties_userName": {
+			"value": "sqladmin"
 		},
 		"LS_PARQUET_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
