@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "DS_AZSQL_CSV_EXCEL",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": true
 				}
 			},
 			{
