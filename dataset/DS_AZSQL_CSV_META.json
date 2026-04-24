@@ -1,0 +1,12 @@
+{
+	"name": "DS_AZSQL_CSV_META",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZSQL_CSV_META",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
