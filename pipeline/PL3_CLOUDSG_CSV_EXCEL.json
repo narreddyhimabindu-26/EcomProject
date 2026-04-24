@@ -17,12 +17,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT DISTINCT L3_switch_type \nFROM dbo.vb_tbl_job a\nJOIN dbo.vb_tbl_trigger b ON a.trigger_id = b.trigger_id\nWHERE b.trigger_name = '@{pipeline().parameters.Trigger}'",
+						"sqlReaderQuery": {
+							"value": "SELECT DISTINCT L3_switch_type \nFROM dbo.vb_tbl_job a\nJOIN dbo.vb_tbl_trigger b ON a.trigger_id = b.trigger_id\nWHERE b.trigger_name = '@{pipeline().parameters.Trigger}'\n",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "AzureSqlTable2",
+						"referenceName": "DS_AZSQL_SRCDB",
 						"type": "DatasetReference"
 					}
 				}
@@ -67,10 +70,10 @@
 							]
 						},
 						{
-							"value": "aws"
+							"value": "Aws"
 						},
 						{
-							"value": "gcp"
+							"value": "GCP"
 						}
 					]
 				}
@@ -79,6 +82,11 @@
 		"parameters": {
 			"Trigger": {
 				"type": "string"
+			}
+		},
+		"variables": {
+			"Mapping": {
+				"type": "String"
 			}
 		},
 		"annotations": []
