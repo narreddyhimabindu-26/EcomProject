@@ -87,6 +87,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SqlServer1'"
 		},
+		"LS_BLOB_SNWFLK_PARQ_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_SNWFLK_PARQ'"
+		},
+		"LS_ADLS_SNWFLK_PARQ_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_SNWFLK_PARQ'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
@@ -214,6 +222,14 @@
 		"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
 			"type": "string",
 			"defaultValue": "Tr_sample_csv"
+		},
+		"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"SNWFLK_Trigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/950d9472-7dc1-40ab-958c-dff55eae9eab/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/blobvbdevsnow10"
 		},
 		"containerUri": {
 			"type": "string",
@@ -407,8 +423,17 @@
 					"LS_SQL_PARQ_accountKey": {
 						"value": "[parameters('LS_SQL_PARQ_accountKey')]"
 					},
+					"LS_BLOB_SNWFLK_PARQ_connectionString": {
+						"value": "[parameters('LS_BLOB_SNWFLK_PARQ_connectionString')]"
+					},
+					"LS_ADLS_SNWFLK_PARQ_accountKey": {
+						"value": "[parameters('LS_ADLS_SNWFLK_PARQ_accountKey')]"
+					},
 					"LS_SQL_PARQ_properties_typeProperties_url": {
 						"value": "[parameters('LS_SQL_PARQ_properties_typeProperties_url')]"
+					},
+					"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -432,6 +457,29 @@
 					},
 					"LS_SqlServer1_connectionString": {
 						"value": "[parameters('LS_SqlServer1_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADF-VBB8-ETL-DEV10_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ADF-VBB8-ETL-DEV10_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SNWFLK_Trigger_properties_typeProperties_scope": {
+						"value": "[parameters('SNWFLK_Trigger_properties_typeProperties_scope')]"
 					},
 					"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
 						"value": "[parameters('Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger')]"
@@ -439,7 +487,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ADF-VBB8-ETL-DEV10_ArmTemplate_1')]"
+				"[resourceId('Microsoft.Resources/deployments', 'ADF-VBB8-ETL-DEV10_ArmTemplate_2')]"
 			]
 		}
 	]
