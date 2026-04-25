@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
+		"LS_ADLS_SNWFLK_PARQ_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_SNWFLK_PARQ'"
+		},
 		"LS_AZSQL_CSV_META_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQL_CSV_META'"
@@ -22,6 +26,10 @@
 		"LS_AZSQL_SRCDB_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQL_SRCDB'"
+		},
+		"LS_BLOB_SNWFLK_PARQ_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_SNWFLK_PARQ'"
 		},
 		"LS_BULK_accountKey": {
 			"type": "secureString",
@@ -87,15 +95,11 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SqlServer1'"
 		},
-		"LS_BLOB_SNWFLK_PARQ_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_SNWFLK_PARQ'"
-		},
-		"LS_ADLS_SNWFLK_PARQ_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_SNWFLK_PARQ'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
 		},
@@ -219,17 +223,13 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
 		},
-		"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
-			"type": "string",
-			"defaultValue": "Tr_sample_csv"
-		},
-		"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevvbsorce010.dfs.core.windows.net/"
-		},
 		"SNWFLK_Trigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/950d9472-7dc1-40ab-958c-dff55eae9eab/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/blobvbdevsnow10"
+		},
+		"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
+			"type": "string",
+			"defaultValue": "Tr_sample_csv"
 		},
 		"containerUri": {
 			"type": "string",
@@ -261,6 +261,9 @@
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
+					"LS_ADLS_SNWFLK_PARQ_accountKey": {
+						"value": "[parameters('LS_ADLS_SNWFLK_PARQ_accountKey')]"
+					},
 					"LS_AZSQL_CSV_META_password": {
 						"value": "[parameters('LS_AZSQL_CSV_META_password')]"
 					},
@@ -269,6 +272,9 @@
 					},
 					"LS_AZSQL_SRCDB_password": {
 						"value": "[parameters('LS_AZSQL_SRCDB_password')]"
+					},
+					"LS_BLOB_SNWFLK_PARQ_connectionString": {
+						"value": "[parameters('LS_BLOB_SNWFLK_PARQ_connectionString')]"
 					},
 					"LS_BULK_accountKey": {
 						"value": "[parameters('LS_BULK_accountKey')]"
@@ -309,11 +315,11 @@
 					"LS_SNOWFLAKE_PARQUET_accountKey": {
 						"value": "[parameters('LS_SNOWFLAKE_PARQUET_accountKey')]"
 					},
-					"LS_SQLSERVER_password": {
-						"value": "[parameters('LS_SQLSERVER_password')]"
-					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url')]"
 					},
 					"LS_AZSQL_CSV_META_properties_typeProperties_server": {
 						"value": "[parameters('LS_AZSQL_CSV_META_properties_typeProperties_server')]"
@@ -389,18 +395,6 @@
 					},
 					"LS_SNOWFLAKE_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_SNOWFLAKE_PARQUET_properties_typeProperties_url')]"
-					},
-					"LS_SNOWFLAKE_PARQUET1_sasUri": {
-						"value": "[parameters('LS_SNOWFLAKE_PARQUET1_sasUri')]"
-					},
-					"LS_SQLSERVER_properties_typeProperties_server": {
-						"value": "[parameters('LS_SQLSERVER_properties_typeProperties_server')]"
-					},
-					"LS_SQLSERVER_properties_typeProperties_database": {
-						"value": "[parameters('LS_SQLSERVER_properties_typeProperties_database')]"
-					},
-					"LS_SQLSERVER_properties_typeProperties_userName": {
-						"value": "[parameters('LS_SQLSERVER_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -420,20 +414,26 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_SQLSERVER_password": {
+						"value": "[parameters('LS_SQLSERVER_password')]"
+					},
 					"LS_SQL_PARQ_accountKey": {
 						"value": "[parameters('LS_SQL_PARQ_accountKey')]"
 					},
-					"LS_BLOB_SNWFLK_PARQ_connectionString": {
-						"value": "[parameters('LS_BLOB_SNWFLK_PARQ_connectionString')]"
+					"LS_SNOWFLAKE_PARQUET1_sasUri": {
+						"value": "[parameters('LS_SNOWFLAKE_PARQUET1_sasUri')]"
 					},
-					"LS_ADLS_SNWFLK_PARQ_accountKey": {
-						"value": "[parameters('LS_ADLS_SNWFLK_PARQ_accountKey')]"
+					"LS_SQLSERVER_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQLSERVER_properties_typeProperties_server')]"
+					},
+					"LS_SQLSERVER_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQLSERVER_properties_typeProperties_database')]"
+					},
+					"LS_SQLSERVER_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQLSERVER_properties_typeProperties_userName')]"
 					},
 					"LS_SQL_PARQ_properties_typeProperties_url": {
 						"value": "[parameters('LS_SQL_PARQ_properties_typeProperties_url')]"
-					},
-					"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
-						"value": "[parameters('LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url')]"
 					}
 				}
 			},

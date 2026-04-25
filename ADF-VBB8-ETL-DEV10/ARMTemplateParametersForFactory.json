@@ -8,6 +8,9 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"LS_ADLS_SNWFLK_PARQ_accountKey": {
+			"value": ""
+		},
 		"LS_AZSQL_CSV_META_password": {
 			"value": ""
 		},
@@ -15,6 +18,9 @@
 			"value": ""
 		},
 		"LS_AZSQL_SRCDB_password": {
+			"value": ""
+		},
+		"LS_BLOB_SNWFLK_PARQ_connectionString": {
 			"value": ""
 		},
 		"LS_BULK_accountKey": {
@@ -65,13 +71,10 @@
 		"LS_SqlServer1_connectionString": {
 			"value": ""
 		},
-		"LS_BLOB_SNWFLK_PARQ_connectionString": {
-			"value": ""
-		},
-		"LS_ADLS_SNWFLK_PARQ_accountKey": {
-			"value": ""
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
+		},
+		"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
 		},
 		"LS_AZSQL_CSV_META_properties_typeProperties_server": {
@@ -164,14 +167,11 @@
 		"LS_SQL_PARQ_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
 		},
-		"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
-			"value": "Tr_sample_csv"
-		},
-		"LS_ADLS_SNWFLK_PARQ_properties_typeProperties_url": {
-			"value": "https://adlsdevvbsorce010.dfs.core.windows.net/"
-		},
 		"SNWFLK_Trigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/950d9472-7dc1-40ab-958c-dff55eae9eab/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/blobvbdevsnow10"
+		},
+		"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
+			"value": "Tr_sample_csv"
 		}
 	}
 }
