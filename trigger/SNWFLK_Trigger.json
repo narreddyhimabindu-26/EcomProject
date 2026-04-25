@@ -13,12 +13,11 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/input/blobs/",
+			"blobPathBeginsWith": "/input/blobs/snowflake/2026/04",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/950d9472-7dc1-40ab-958c-dff55eae9eab/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/blobvbdevsnow10",
 			"events": [
-				"Microsoft.Storage.BlobCreated",
-				"Microsoft.Storage.BlobDeleted"
+				"Microsoft.Storage.BlobCreated"
 			]
 		}
 	}
