@@ -7,11 +7,11 @@
 		"typeProperties": {
 			"server": "SAITEJA-PC",
 			"database": "vbproject",
-			"encrypt": "optional",
+			"encrypt": "mandatory",
 			"trustServerCertificate": true,
 			"authenticationType": "SQL",
 			"userName": "vbuser",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxYzc5YzMxZS1mZGRiLTQ2YTEtODc0Ny1jNGE3MjI5NzhiZTEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyYjliYmViMS0xNzVjLTQ2NzktYTk1MC1lYTIyMzdmZTY5NjYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntime1",
