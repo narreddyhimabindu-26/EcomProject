@@ -16,9 +16,16 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SqlServerSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.parquet",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
 					},
 					"sink": {
 						"type": "ParquetSink",
@@ -41,13 +48,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_Sqlserver",
+						"referenceName": "DS_BULK",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_SQL_PARQ",
+						"referenceName": "DS_BULK_PARQUET",
 						"type": "DatasetReference"
 					}
 				]

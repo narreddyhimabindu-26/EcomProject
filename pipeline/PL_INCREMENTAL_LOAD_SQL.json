@@ -17,19 +17,30 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT LastLoadValue \nFROM TableName \nWHERE TableName = 'dbo.ADF_Watermark_Table'",
+						"sqlReaderQuery": "SELECT TableSchema, TableName, WatermarkColumn, LastLoadValue FROM dbo.ADF_Watermark_Table\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
 						"referenceName": "DS_Sqlserver",
-						"type": "DatasetReference"
-					}
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaname": {
+								"value": "@pipeline().parameters.TableSchema",
+								"type": "Expression"
+							},
+							"tablename": {
+								"value": "@pipeline().parameters.TableName",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
-				"name": "IF_LAST_VAL_0",
-				"type": "IfCondition",
+				"name": "ForEachSqlTable",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "LOOKUP_WATERMARK_GET_LAST_VAL",
@@ -40,117 +51,58 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"expression": {
-						"value": "@not(empty(activity('LOOKUP_WATERMARK_GET_LAST_VAL').output.firstRow.WatermarkValue))",
+					"items": {
+						"value": "@activity('LOOKUP_WATERMARK_GET_LAST_VAL').output.value",
 						"type": "Expression"
 					},
-					"ifFalseActivities": [
+					"isSequential": false,
+					"activities": [
 						{
-							"name": "CPY_INCREMENTAL_LOAD",
-							"type": "Copy",
+							"name": "Exec_SQL_Incremental_Load",
+							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
+								"pipeline": {
+									"referenceName": "PL_INCREMENTAL_LOAD",
+									"type": "PipelineReference"
 								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
+								"waitOnCompletion": true,
+								"parameters": {
+									"TableSchema": {
+										"value": "@item().TableSchema",
+										"type": "Expression"
 									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "DS_Sqlserver",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_SQL_PARQ",
-									"type": "DatasetReference"
-								}
-							]
-						}
-					],
-					"ifTrueActivities": [
-						{
-							"name": "CPY_BULK_DATA",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
+									"TableName": {
+										"value": "@item().TableName",
+										"type": "Expression"
 									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
+									"WatermarkColumn": {
+										"value": "@item().WatermarkColumn",
+										"type": "Expression"
+									},
+									"LastLoadValue": {
+										"value": "@item().LastLoadValue",
+										"type": "Expression"
 									}
 								}
-							},
-							"inputs": [
-								{
-									"referenceName": "DS_Sqlserver",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_SQL_PARQ",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						}
 					]
 				}
 			}
 		],
+		"parameters": {
+			"TableSchema": {
+				"type": "string"
+			},
+			"TableName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
